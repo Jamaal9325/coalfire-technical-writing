@@ -1,1 +1,0 @@
-# coalfire-technical-writing
