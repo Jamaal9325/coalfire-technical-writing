@@ -1,0 +1,23 @@
+---
+- name: Ensure security policies are configured for bastion1
+  hosts: bastion1
+  gather_facts: false
+  vars:
+    deny_groups:
+      - Guests
+      - Administrators
+    asr_rules:
+      - 26190899-1602-49e8-8b27-eb1d0a1ce869
+
+  tasks:
+  - name: Deny access to Guests, Local account, and Administrators
+    win_security_policy:
+      option: "Deny access to this computer from the network"
+      state: "merged"
+      data_type: "string"
+      data: "{{ deny_groups | join(',') }}"
+
+  - name: Configure Attack Surface Reduction rules
+    win_command:
+      cmd: powershell.exe Set-MpPreference -AttackSurfaceReductionRules "{{ item }}" -Force
+    with_items: "{{ asr_rules }}"
