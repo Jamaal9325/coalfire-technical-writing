@@ -6,7 +6,7 @@ This playbook ensures that the required security policies are applied to a Windo
 It performs the following tasks:
 
 Ensures that "Deny access to this computer from the network" is set for Guests, Local account, and Administrators groups.
-Configures Attack Surface Reduction rules for the 26190899-1602-49e8-8b27-eb1d0a1ce869 group.
+Configures Attack Surface Reduction state rules 26190899-1602-49e8-8b27-eb1d0a1ce869.
 
 Prerequisites:
 Ansible 2.10 or later installed on the machine from which you'll run the playbook.
